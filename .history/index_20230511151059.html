@@ -112,9 +112,9 @@
             document.getElementById(pageName).style.display = "block";
             // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
-            if (pageName == "teamspage") {
-                getTeams()
-            }
+            // if (pageName == "teamspage") {
+            //     getTeams()
+            // }
             if (pageName == "eventspage") {
                 getEvents()
             }
@@ -122,6 +122,8 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
+        document.getElementById("teamspage").onload = getTeams();
 
         function getTeams() {
             fetch(teamsurl, data)

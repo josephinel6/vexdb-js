@@ -110,6 +110,13 @@
                 tablinks[i].style.backgroundColor = "";
             }
             document.getElementById(pageName).style.display = "block";
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            if (pageName = "menupage") {
+                menuitems();
+            }
+            console.log("opening" + pageName);
             // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
             if (pageName == "teamspage") {

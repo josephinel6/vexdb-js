@@ -52,11 +52,11 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                            <a class="nav-link" aria-current="page" onclick="openpage('teamspage')"
                                 data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                            <a class="nav-link" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
                                 aria-label="Close">Events</a>
                         </li>
                     </ul>
@@ -66,7 +66,7 @@
     </nav>
 
     <div id="loggedin">
-        <div id="teamspage" class="tabcontent">
+        <div id="teamspage">
             <div id="teamslist"></div>
 
         </div>
@@ -95,21 +95,11 @@
         };
 
         function openpage(pageName) {
-            // var i, tabcontent, tablinks;
-            // tabcontent = document.getElementsByClassName("tabcontent");
-            // for (i = 0; i < tabcontent.length; i++) {
-            //     tabcontent[i].style.display = "none";
-            // }
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].style.backgroundColor = "";
-            }
-            document.getElementById(pageName).style.display = "block";
             // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
             if (pageName == "teamspage") {

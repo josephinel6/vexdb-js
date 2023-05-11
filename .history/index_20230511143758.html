@@ -79,18 +79,17 @@
 
         //* API URLs
         var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjVhN2ZjOWFhOTFkOTBlZDg1NDI2NzlhZDQwN2FkNjQwNjFhMjQ0NjhjYzI4ODg0MGUyZDE5YzFhZDBjMmQ1NzY2MjM5MmE2YTdhZDY4ZGEiLCJpYXQiOjE2ODM3NjIwNDEuNjk1MjAzMSwibmJmIjoxNjgzNzYyMDQxLjY5NTIwNzEsImV4cCI6MjYzMDUzNjg0MS42ODYyMjIxLCJzdWIiOiIxMTUxMzEiLCJzY29wZXMiOltdfQ.XoxNTREVpPXphGAs0k_DMpkOAkuZKdOzGk3GEOmJCLWqzhs2M8uopYJ5Haf3bLbiyw5JAc1u-k4K0-z86LzJ5fIh_SYjZ1LsocgdbXE-40OICA8hb0u5XwIdX2ssAriayWP07jz2mrglKG0mTEu9vANcpGJ17CVjSqJwsTMEf0T9Y0_nILHlGe2PpYvuvQXIGleB5LpzLnpWcZW4IFFGwuLE5c7WJgIeTcv5OZsOjylST-yyWg_95LzT7jL8Sl1Sm9CCQPnR9q2InHyLAx0up-tLSMSAmzciTZgBaB15O97t3-JmXNdIZ9eMTSTweC_yxWxOJrI1iJ2hTy1p162jobSS3dp0k7JO5drae7NPCCG68Lo40mAv0xIwH-2-zSQjo0ZPn9VWM78CEgeMAbyIseJ2558BHaRsMVsr3b4GTSjZHSvAiBTTLtxqqBiTUjUtcArnQR5UXAPRoFebKF1ZxfePeeCZdEDa7kdqMZ80AwmI0RcoetazCnVeFbHIROC7ANIIyIDMirY9-qhTq4ykX32VwApAtO-WRp7LbTNCMMeY0xM8UJv5EfY0lCOofeXDtCyTGmxz6Vmaw4bGCqmbxmC8iqlXN7tgIfzl12zO_DloSHwF2meNaIVjJXPsw091BHwmPQKsGubmJ9UPKSt3Xw8jhEhepZr-6X394WAwmw8";
-        var mainurl = "https://www.robotevents.com/api/v2";
-        var eventsurl = mainurl + "/events";
-        var teamsurl = mainurl + "/teams";
+        var mainurl = "https://www.robotevents.com/api/v2/";
+        var eventsurl = mainurl + "events/";
+        var teamsurl = mainurl + "teams/";
         var myHeaders = new Headers();
 
         myHeaders.append('Content-Type', 'application/json; charset=utf-8');
         myHeaders.append('Authorization', 'Bearer ' + token);
 
         const data = {
-
-            method: 'GET',
-            headers: myHeaders
+            'Method': 'GET',
+            'Headers': myHeaders
         };
 
         function openpage(pageName) {
@@ -112,68 +111,48 @@
             document.documentElement.scrollTop = 0;
         }
 
-        var nextpageteamsurl = teamsurl;
         function getTeams() {
-            while (nextpageteamsurl != null) {
-                fetch(nextpageteamsurl, data)
-                    .then(response => response.json())
-                    .then(response => {
-                        console.log(response);
-                        console.log(Object.keys(response.data).length)
-                        // console.log(response.meta.last_page);
-                        // if (response.meta.next_page_url != null) {
-                        for (i = 0; i < Object.keys(response.data).length; i++) {
-                            console.log(response.data[i].team_name);
-                        }
-                        nextpageteamsurl = response.meta.next_page_url;
-                        // for (i = 0; i < response.meta.last_page; i++) {
-                        //     fetch(teamsurl + "?page=" + i, data)
-                        //         .then(response => response.json())
-                        //         .then(response => {
-                        //             console.log()
-                        //         })
-                        // }
-                        // else {
-                        //     break;
-                        // }
-                        // document.getElementById("numofproducts").innerHTML = Object.keys(response).length;
-                        // console.log(Object.keys(response).length)
-                        // num = Object.keys(response).length;
-                        // for (t = 0; t < num; t++) {
+            fetch(teamsurl, data)
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    // document.getElementById("numofproducts").innerHTML = Object.keys(response).length;
+                    // console.log(Object.keys(response).length)
+                    // num = Object.keys(response).length;
+                    // for (t = 0; t < num; t++) {
 
-                        //     var div = document.createElement("div");
-                        //     div.id = "item" + t;
-                        //     div.className = "item";
-                        //     document.body.appendChild(div);
-                        //     document.getElementById("productspage").appendChild(div);
-                        //     var img = document.createElement("img");
-                        //     document.getElementById("item" + t).appendChild(img);
-                        //     img.id = "productimg" + t;
-                        //     img.className = "itemimg";
-                        //     div.style.display = "inline-block";
-                        //     div.style.verticalAlign = "middle";
-                        //     img.style.objectFit = "contain";
-                        //     img.src = "https:" + response[t].api_featured_image;
-                        //     console.log("https:" + response[t].api_featured_image)
-                        //     var itembrand = document.createElement("div");
-                        //     itembrand.id = "itembrand" + t;
-                        //     itembrand.className = "itembrand";
-                        //     itembrand.innerHTML = response[t].brand;
-                        //     div.appendChild(itembrand);
-                        //     var itemname = document.createElement("div");
-                        //     itemname.id = "itemname" + t;
-                        //     itemname.className = "itemname";
-                        //     itemname.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
-                        //     img.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
-                        //     div.appendChild(itemname);
-                        //     itemname.style.bottom = "0";
-                        //     itemname.style.color = "black";
-                        //     itemname.innerHTML = response[t].name;
-                        //     itembrand.setAttribute("onclick", "productslistbrand('" + response[t].brand.split(' ').join('+') + "')")
-                        // }
-                    })
+                    //     var div = document.createElement("div");
+                    //     div.id = "item" + t;
+                    //     div.className = "item";
+                    //     document.body.appendChild(div);
+                    //     document.getElementById("productspage").appendChild(div);
+                    //     var img = document.createElement("img");
+                    //     document.getElementById("item" + t).appendChild(img);
+                    //     img.id = "productimg" + t;
+                    //     img.className = "itemimg";
+                    //     div.style.display = "inline-block";
+                    //     div.style.verticalAlign = "middle";
+                    //     img.style.objectFit = "contain";
+                    //     img.src = "https:" + response[t].api_featured_image;
+                    //     console.log("https:" + response[t].api_featured_image)
+                    //     var itembrand = document.createElement("div");
+                    //     itembrand.id = "itembrand" + t;
+                    //     itembrand.className = "itembrand";
+                    //     itembrand.innerHTML = response[t].brand;
+                    //     div.appendChild(itembrand);
+                    //     var itemname = document.createElement("div");
+                    //     itemname.id = "itemname" + t;
+                    //     itemname.className = "itemname";
+                    //     itemname.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
+                    //     img.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
+                    //     div.appendChild(itemname);
+                    //     itemname.style.bottom = "0";
+                    //     itemname.style.color = "black";
+                    //     itemname.innerHTML = response[t].name;
+                    //     itembrand.setAttribute("onclick", "productslistbrand('" + response[t].brand.split(' ').join('+') + "')")
+                    // }
+                })
 
-            }
         }
 
     </script>

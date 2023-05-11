@@ -124,8 +124,8 @@
                         // if (response.meta.next_page_url != null) {
                         for (i = 0; i < Object.keys(response.data).length; i++) {
                             console.log(response.data[i].team_name);
+                            nextpageteamsurl = response.meta.next_page_url;
                         }
-                        nextpageteamsurl = response.meta.next_page_url;
                         // for (i = 0; i < response.meta.last_page; i++) {
                         //     fetch(teamsurl + "?page=" + i, data)
                         //         .then(response => response.json())

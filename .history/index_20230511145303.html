@@ -114,28 +114,25 @@
 
         var nextpageteamsurl = teamsurl;
         function getTeams() {
-            while (nextpageteamsurl != null) {
+            while (true) {
                 fetch(nextpageteamsurl, data)
                     .then(response => response.json())
                     .then(response => {
                         console.log(response);
                         console.log(Object.keys(response.data).length)
                         // console.log(response.meta.last_page);
-                        // if (response.meta.next_page_url != null) {
-                        for (i = 0; i < Object.keys(response.data).length; i++) {
-                            console.log(response.data[i].team_name);
+                        if (response.meta.next_page_url != null) {
+                            for (i = 0; i < Object.keys(response.data).length; i++) {
+                                console.log(response.data[i].team_name);
+                                nextpageteamsurl = response.meta.next_page_url;
+                            }
+                            // for (i = 0; i < response.meta.last_page; i++) {
+                            //     fetch(teamsurl + "?page=" + i, data)
+                            //         .then(response => response.json())
+                            //         .then(response => {
+                            //             console.log()
+                            //         })
                         }
-                        nextpageteamsurl = response.meta.next_page_url;
-                        // for (i = 0; i < response.meta.last_page; i++) {
-                        //     fetch(teamsurl + "?page=" + i, data)
-                        //         .then(response => response.json())
-                        //         .then(response => {
-                        //             console.log()
-                        //         })
-                        // }
-                        // else {
-                        //     break;
-                        // }
                         // document.getElementById("numofproducts").innerHTML = Object.keys(response).length;
                         // console.log(Object.keys(response).length)
                         // num = Object.keys(response).length;

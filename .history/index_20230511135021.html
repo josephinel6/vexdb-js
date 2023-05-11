@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .nav-link {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .nav-link:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Collapsed content</h5>
+    <span class="text-muted">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav> -->
+
+    <nav class="navbar bg-light fixed-top">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Offcanvas navbar</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
+                    <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" onclick="openpage('teamspage')"
+                                data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                                aria-label="Close">Events</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="loggedin">
+        <div id="teamspage">
+
+        </div>
+
+        <div id="eventspage">
+
+        </div>
+    </div>
+
+    <script>
+
+        //* API URLs
+        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjVhN2ZjOWFhOTFkOTBlZDg1NDI2NzlhZDQwN2FkNjQwNjFhMjQ0NjhjYzI4ODg0MGUyZDE5YzFhZDBjMmQ1NzY2MjM5MmE2YTdhZDY4ZGEiLCJpYXQiOjE2ODM3NjIwNDEuNjk1MjAzMSwibmJmIjoxNjgzNzYyMDQxLjY5NTIwNzEsImV4cCI6MjYzMDUzNjg0MS42ODYyMjIxLCJzdWIiOiIxMTUxMzEiLCJzY29wZXMiOltdfQ.XoxNTREVpPXphGAs0k_DMpkOAkuZKdOzGk3GEOmJCLWqzhs2M8uopYJ5Haf3bLbiyw5JAc1u-k4K0-z86LzJ5fIh_SYjZ1LsocgdbXE-40OICA8hb0u5XwIdX2ssAriayWP07jz2mrglKG0mTEu9vANcpGJ17CVjSqJwsTMEf0T9Y0_nILHlGe2PpYvuvQXIGleB5LpzLnpWcZW4IFFGwuLE5c7WJgIeTcv5OZsOjylST-yyWg_95LzT7jL8Sl1Sm9CCQPnR9q2InHyLAx0up-tLSMSAmzciTZgBaB15O97t3-JmXNdIZ9eMTSTweC_yxWxOJrI1iJ2hTy1p162jobSS3dp0k7JO5drae7NPCCG68Lo40mAv0xIwH-2-zSQjo0ZPn9VWM78CEgeMAbyIseJ2558BHaRsMVsr3b4GTSjZHSvAiBTTLtxqqBiTUjUtcArnQR5UXAPRoFebKF1ZxfePeeCZdEDa7kdqMZ80AwmI0RcoetazCnVeFbHIROC7ANIIyIDMirY9-qhTq4ykX32VwApAtO-WRp7LbTNCMMeY0xM8UJv5EfY0lCOofeXDtCyTGmxz6Vmaw4bGCqmbxmC8iqlXN7tgIfzl12zO_DloSHwF2meNaIVjJXPsw091BHwmPQKsGubmJ9UPKSt3Xw8jhEhepZr-6X394WAwmw8";
+        const data = {
+            'Method': 'GET',
+            'Authorization': 'Bearer ' + token
+        };
+        var mainurl = "https://www.robotevents.com/api/v2/";
+        var eventsurl = mainurl + "events/";
+        var teamsurl = mainurl + "teams/";
+
+        function openpage(pageName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementsByClassName("offcanvas").
+                document.getElementById(pageName).style.display = "block";
+
+            if (pageName == "teamspage") {
+                getTeams()
+            }
+            if (pageName == "eventspage") {
+                getEvents()
+            }
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        function getTeams() {
+            fetch("teamsurl" + )
+                .then(response => response.json())
+                .then(response => {
+                    document.getElementById("numofproducts").innerHTML = Object.keys(response).length;
+                    console.log(Object.keys(response).length)
+                    num = Object.keys(response).length;
+                    for (t = 0; t < num; t++) {
+
+                        var div = document.createElement("div");
+                        div.id = "item" + t;
+                        div.className = "item";
+                        document.body.appendChild(div);
+                        document.getElementById("productspage").appendChild(div);
+                        var img = document.createElement("img");
+                        document.getElementById("item" + t).appendChild(img);
+                        img.id = "productimg" + t;
+                        img.className = "itemimg";
+                        div.style.display = "inline-block";
+                        div.style.verticalAlign = "middle";
+                        img.style.objectFit = "contain";
+                        img.src = "https:" + response[t].api_featured_image;
+                        console.log("https:" + response[t].api_featured_image)
+                        var itembrand = document.createElement("div");
+                        itembrand.id = "itembrand" + t;
+                        itembrand.className = "itembrand";
+                        itembrand.innerHTML = response[t].brand;
+                        div.appendChild(itembrand);
+                        var itemname = document.createElement("div");
+                        itemname.id = "itemname" + t;
+                        itemname.className = "itemname";
+                        itemname.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
+                        img.setAttribute("onclick", "viewproduct('" + load + "', '" + response[t].id + "')")
+                        div.appendChild(itemname);
+                        itemname.style.bottom = "0";
+                        itemname.style.color = "black";
+                        itemname.innerHTML = response[t].name;
+                        var stardiv = document.createElement("div");
+                        stardiv.id = "stardiv" + t;
+                        div.style.marginTop = "30px";
+                        stardiv.className = "stardiv";
+                        div.appendChild(stardiv);
+                        var star1 = document.createElement("span");
+                        var star2 = document.createElement("span");
+                        var star3 = document.createElement("span");
+                        var star4 = document.createElement("span");
+                        var star5 = document.createElement("span");
+                        stardiv.appendChild(star1);
+                        stardiv.appendChild(star2);
+                        stardiv.appendChild(star3);
+                        stardiv.appendChild(star4);
+                        stardiv.appendChild(star5);
+                        star1.className = "fa fa-star-o";
+                        star2.className = "fa fa-star-o";
+                        star3.className = "fa fa-star-o";
+                        star4.className = "fa fa-star-o";
+                        star5.className = "fa fa-star-o";
+                        star1.style.display = "inline-block";
+                        star2.style.display = "inline-block";
+                        star3.style.display = "inline-block";
+                        star4.style.display = "inline-block";
+                        star5.style.display = "inline-block";
+                        var rating = response[t].rating;
+                        if (response[t].rating == 0) {
+                            star1.className = "fa fa-star-o";
+                            star2.className = "fa fa-star-o";
+                            star3.className = "fa fa-star-o";
+                            star4.className = "fa fa-star-o";
+                            star5.className = "fa fa-star-o";
+                        }
+                        else if (response[t].rating > 0.3 && response <= 0.8) {
+                            star1.className = "fa fa-star-half-full"
+                        }
+                        else if (response[t].rating > 0.8 && response[t].rating <= 1.3) {
+                            star1.className = "fa fa-star";
+                        }
+                        else if (response[t].rating > 1.3 && rating <= 1.8) {
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star-half-full"
+                        }
+                        else if (rating > 1.8 && rating <= 2.3) {
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                        }
+                        else if (rating > 2.3 && rating <= 2.8) {
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star-half-full";
+                        }
+                        else if (rating > 2.8 && rating <= 3.3) {
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star";
+                        }
+                        else if (rating > 3.3 && rating <= 3.8) {
+
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star";
+                            star4.className = "fa fa-star-half-full";
+                        }
+                        else if (rating > 3.8 && rating <= 4.3) {
+
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star";
+                            star4.className = "fa fa-star";
+                        }
+                        else if (rating > 4.3 && rating <= 4.8) {
+
+
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star";
+                            star4.className = "fa fa-star";
+                            star5.className = "fa fa-star-half-full";
+                        }
+                        else if (rating > 4.8) {
+
+
+                            star1.className = "fa fa-star";
+                            star2.className = "fa fa-star";
+                            star3.className = "fa fa-star";
+                            star4.className = "fa fa-star";
+                            star5.className = "fa fa-star";
+                        }
+                        else {
+                            star1.style.display = "none";
+                            star2.style.display = "none";
+                            star3.style.display = "none";
+                            star4.style.display = "none";
+                            star5.style.display = "none";
+                        }
+                        if (response[t].price != "0.0") {
+                            var price = document.createElement("div");
+                            price.className = "price";
+                            price.id = "price" + [t];
+                            div.appendChild(price);
+                            price.innerHTML = "$" + response[t].price;
+                        }
+                        itembrand.setAttribute("onclick", "productslistbrand('" + response[t].brand.split(' ').join('+') + "')")
+                    }
+                })
+
+        }
+
+    </script>
+
+</body>
+
+</html>

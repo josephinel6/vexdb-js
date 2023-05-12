@@ -87,7 +87,7 @@
         }
 
         .tabcontent {
-            margin-top: 10vh;
+            margin-top: 9.5vh;
             display: none;
         }
     </style>
@@ -141,11 +141,11 @@
     <div id="loggedin">
         <div id="teamspage" class="tabcontent">
             <div id="teamslist"></div>
-            <CENTER id="teamslistpageselection" style="display:none">
-                <p style="display: inline-block" id="teamslistprev"> ← </p>
+            <CENTER>
+                <p style="display: inline-block"> ← </p>
                 <input id="teamslistpagenum" type="text" style="display: inline-block">
-                <p id="teamslisttotalpages" style="display: inline-block"> </p>
-                <p style="display: inline-block" id="teamslistnext"> → </p>
+                <p id="teamslisttotalpages"> </p>
+                <p style="display: inline-block"> → </p>
             </CENTER>
         </div>
 
@@ -191,7 +191,7 @@
             // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
             if (pageName == "teamspage") {
-                getTeams(1)
+                getTeams()
             }
             if (pageName == "eventspage") {
                 getEvents()
@@ -201,12 +201,7 @@
             document.documentElement.scrollTop = 0;
         }
 
-        function getTeams(page) {
-            var teamstodelete = document.querySelectorAll(".teamsdiv");
-            teamstodelete.forEach(teamstodelete => {
-                teamstodelete.remove();
-                console.log("remove")
-            })
+        function getTeams() {
             var pleasewait = document.createElement("img")
             pleasewait.src = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
             document.getElementById("teamspage").appendChild(pleasewait)
@@ -215,10 +210,9 @@
             pleasewait.style.height = "50%";
             pleasewait.style.width = "50%";
             pleasewait.style.objectFit = "cover";
-            fetch(teamsurl + "?per_page=100" + "?page=" + page, data)
+            fetch(teamsurl + "?per_page=100", data)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(teamsurl + "?page=" + page + "&per_page=100")
                     console.log(response);
                     console.log(Object.keys(response.data).length)
                     // console.log(response.meta.last_page);
@@ -266,7 +260,6 @@
                         // teamorgcontainer.style.backgroundColor = "blue";
                         // teamlocationcontainer.style.backgroundColor = "black";
                     }
-                    document.getElementById("teamslistpageselection").style.display = "block";
                     document.getElementById("teamslisttotalpages").innerHTML = "of " + response.meta.last_page;
                     // for (i = 0; i < response.meta.last_page; i++) {
                     //     fetch(teamsurl + "?page=" + i, data)
@@ -316,19 +309,6 @@
                 })
 
         }
-
-        document.getElementById("teamslistpagenum").addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                console.log("Enter");
-                if (document.getElementById("teamslistpagenum").value != null) {
-                    getTeams(document.getElementById("teamslistpagenum").value);
-                    console.log(document.getElementById("teamslistpagenum").value);
-                }
-                else {
-                    alert("Please enter a page number");
-                }
-            }
-        });
 
 
     </script>

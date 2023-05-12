@@ -20,7 +20,7 @@
         }
 
         .navbar {
-            height: 9.5vh;
+            height: 9.5%;
         }
 
         .teamdiv {
@@ -30,17 +30,11 @@
             margin-top: -0.5px;
             height: 100px;
             font-size: 20px;
-            display: flex;
-            align-items: center;
         }
 
         .navbar-toggler {
             height: 100%;
             border: none;
-        }
-
-        #teamslist {
-            margin: 2%;
         }
 
         .navbar-toggler-icon {
@@ -58,37 +52,6 @@
             height: 3%;
             object-fit: cover;
             width: 10%;
-        }
-
-
-        .programcontainer {
-            width: 7%;
-            display: inline-block;
-        }
-
-        .teamnumbercontainer {
-            width: 11%;
-            display: inline-block;
-        }
-
-        .teamnamecontainer {
-            width: 32%;
-            display: inline-block;
-        }
-
-        .teamorgcontainer {
-            width: 25%;
-            display: inline-block;
-        }
-
-        .teamlocationcontainer {
-            width: 25%;
-            display: inline-block;
-        }
-
-        .tabcontent {
-            margin-top: 10vh;
-            display: none;
         }
     </style>
 </head>
@@ -141,15 +104,10 @@
     <div id="loggedin">
         <div id="teamspage" class="tabcontent">
             <div id="teamslist"></div>
-            <CENTER id="teamslistpageselection" style="display:none">
-                <p style="display: inline-block" id="teamslistprev"> ← </p>
-                <input id="teamslistpagenum" type="text" style="display: inline-block">
-                <p id="teamslisttotalpages" style="display: inline-block"> </p>
-                <p style="display: inline-block" id="teamslistnext"> → </p>
-            </CENTER>
+
         </div>
 
-        <div id="eventspage" class="tabcontent">
+        <div id="eventspage">
 
         </div>
     </div>
@@ -191,7 +149,7 @@
             // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
             if (pageName == "teamspage") {
-                getTeams(1)
+                getTeams()
             }
             if (pageName == "eventspage") {
                 getEvents()
@@ -201,29 +159,14 @@
             document.documentElement.scrollTop = 0;
         }
 
-        function getTeams(page) {
-            var teamstodelete = document.querySelectorAll(".teamsdiv");
-            teamstodelete.forEach(teamstodelete => {
-                teamstodelete.remove();
-                console.log("remove")
-            })
-            var pleasewait = document.createElement("img")
-            pleasewait.src = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
-            document.getElementById("teamspage").appendChild(pleasewait)
-            pleasewait.className = "pleasewait"
-            pleasewait.style.marginLeft = "25%";
-            pleasewait.style.height = "50%";
-            pleasewait.style.width = "50%";
-            pleasewait.style.objectFit = "cover";
-            fetch(teamsurl + "?per_page=100" + "?page=" + page, data)
+        function getTeams() {
+            fetch(teamsurl + "?per_page=100", data)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(teamsurl + "?page=" + page + "&per_page=100")
                     console.log(response);
                     console.log(Object.keys(response.data).length)
                     // console.log(response.meta.last_page);
                     // if (response.meta.next_page_url != null) {
-                    pleasewait.remove();
                     for (i = 0; i < Object.keys(response.data).length; i++) {
                         console.log(response.data[i].team_name);
                         var teamdiv = document.createElement("div");
@@ -241,33 +184,16 @@
                         teamnumber.innerHTML = response.data[i].number;
                         teamnumber.style.display = "inline-block"
                         var teamnamecontainer = document.createElement("div");
-                        teamnamecontainer.className = "teamnamecontainer";
                         teamdiv.appendChild(teamnamecontainer)
                         var teamname = document.createElement("p");
                         teamnamecontainer.appendChild(teamname);
                         teamname.innerHTML = response.data[i].team_name;
                         teamname.className = "teamname";
                         teamname.style.display = "inline-block"
-                        var teamorgcontainer = document.createElement("div");
-                        teamorgcontainer.className = "teamorgcontainer"
-                        var teamorg = document.createElement("p");
-                        teamorgcontainer.appendChild(teamorg)
-                        teamdiv.appendChild(teamorgcontainer);
-                        var teamlocationcontainer = document.createElement("div");
-                        teamlocationcontainer.className = "teamlocationcontainer"
-                        var teamlocation = document.createElement("p");
-                        teamlocationcontainer.appendChild(teamlocation);
-                        teamorg.innerHTML = response.data[i].organization;
-                        teamlocation.innerHTML = response.data[i].location.region + ", " + response.data[i].location.country;
-                        teamdiv.appendChild(teamlocationcontainer);
-                        // programcontainer.style.backgroundColor = "blue";
-                        // teamnumbercontainer.style.backgroundColor = "red";
-                        // teamnamecontainer.style.backgroundColor = "black";
-                        // teamorgcontainer.style.backgroundColor = "blue";
-                        // teamlocationcontainer.style.backgroundColor = "black";
+                        programcontainer.style.backgroundColor = "blue";
+                        teamnumbercontainer.style.backgroundColor = "red";
+                        teamnamecontainer.style.backgroundColor = "black";
                     }
-                    document.getElementById("teamslistpageselection").style.display = "block";
-                    document.getElementById("teamslisttotalpages").innerHTML = "of " + response.meta.last_page;
                     // for (i = 0; i < response.meta.last_page; i++) {
                     //     fetch(teamsurl + "?page=" + i, data)
                     //         .then(response => response.json())
@@ -316,19 +242,6 @@
                 })
 
         }
-
-        document.getElementById("teamslistpagenum").addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                console.log("Enter");
-                if (document.getElementById("teamslistpagenum").value != null) {
-                    getTeams(document.getElementById("teamslistpagenum").value);
-                    console.log(document.getElementById("teamslistpagenum").value);
-                }
-                else {
-                    alert("Please enter a page number");
-                }
-            }
-        });
 
 
     </script>

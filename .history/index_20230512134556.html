@@ -218,7 +218,7 @@
             fetch(teamsurl + "?per_page=100" + "?page=" + page, data)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(teamsurl + "?page=" + page + "&per_page=100")
+                    console.log(teamsurl + "?per_page=100" + "?page=" + page)
                     console.log(response);
                     console.log(Object.keys(response.data).length)
                     // console.log(response.meta.last_page);

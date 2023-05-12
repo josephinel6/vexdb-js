@@ -17,15 +17,6 @@
         .nav-link:hover {
             cursor: pointer;
         }
-
-        .teamdiv {
-            border-width: 0.5px;
-            border-color: black;
-            border-style: solid;
-            margin-top: -0.5px;
-            height: 100px;
-            font-size: 20px;
-        }
     </style>
 </head>
 
@@ -54,7 +45,7 @@
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
+                    <!-- <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
                     <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
                         data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -133,7 +124,7 @@
         }
 
         function getTeams() {
-            fetch(teamsurl + "?per_page=100", data)
+            fetch(teamsurl, data)
                 .then(response => response.json())
                 .then(response => {
                     console.log(response);
@@ -143,18 +134,10 @@
                     for (i = 0; i < Object.keys(response.data).length; i++) {
                         console.log(response.data[i].team_name);
                         var teamdiv = document.createElement("div");
-                        teamdiv.id = "teamdiv" + i;
-                        teamdiv.className = "teamdiv";
                         document.getElementById("teamslist").appendChild(teamdiv);
-                        var teamnumber = document.createElement("p");
-                        teamdiv.appendChild(teamnumber);
-                        teamnumber.innerHTML = response.data[i].number;
-                        teamnumber.style.display = "inline-block"
-                        var teamname = document.createElement("p");
+                        var teamname = document.createElement("h1");
                         teamdiv.appendChild(teamname);
                         teamname.innerHTML = response.data[i].team_name;
-                        teamname.className = "teamname";
-                        teamname.style.display = "inline-block"
                     }
                     // for (i = 0; i < response.meta.last_page; i++) {
                     //     fetch(teamsurl + "?page=" + i, data)

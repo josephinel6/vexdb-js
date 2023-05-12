@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="script.js"></script>
-
-
     <!-- <style>
         .nav-link {
             font-size: 5vw;
@@ -100,7 +97,6 @@
 </head>
 
 <body>
-    <div id="nav-placeholder"></div>
     <!-- <div class="collapse" id="navbarToggleExternalContent">
   <div class="bg-dark p-4">
     <h5 class="text-white h4">Collapsed content</h5>
@@ -115,35 +111,36 @@
   </div>
 </nav> -->
 
-    <!-- <nav class="navbar bg-light fixed-top">
+    <nav class="navbar bg-light fixed-top">
         <div class="container-fluid">
             <!-- <a class="navbar-brand" href="#">Offcanvas navbar</a> -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-            <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
-            <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
-                data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
+                    <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                                data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                                aria-label="Close">Events</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                    <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
-                        data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
-                        aria-label="Close">Events</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    </div>
     </nav>
-    -->
+
     <div id="loggedin">
         <div id="teamspage" class="tabcontent">
             <div id="teamslist"></div>
@@ -404,7 +401,6 @@
         //         }
         //     }
         // });
-
 
 
     </script>

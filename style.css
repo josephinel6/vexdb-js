@@ -1,0 +1,81 @@
+.nav-link {
+    font-size: 5vw;
+    margin-left: 10px;
+
+}
+
+.nav-link:hover {
+    cursor: pointer;
+}
+
+.navbar {
+    height: 9.5vh;
+}
+
+.teamdiv {
+    border-width: 0.5px;
+    border-color: black;
+    border-style: solid;
+    margin-top: -0.5px;
+    height: 100px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggler {
+    height: 100%;
+    border: none;
+}
+
+#teamslist {
+    margin: 2%;
+}
+
+.navbar-toggler-icon {
+    object-fit: cover;
+    height: 100% !important;
+    width: 50px;
+}
+
+.container-fluid {
+    height: 80%;
+}
+
+
+.btn-close {
+    height: 3%;
+    object-fit: cover;
+    width: 10%;
+}
+
+
+.programcontainer {
+    width: 7%;
+    display: inline-block;
+}
+
+.teamnumbercontainer {
+    width: 11%;
+    display: inline-block;
+}
+
+.teamnamecontainer {
+    width: 32%;
+    display: inline-block;
+}
+
+.teamorgcontainer {
+    width: 25%;
+    display: inline-block;
+}
+
+.teamlocationcontainer {
+    width: 25%;
+    display: inline-block;
+}
+
+.tabcontent {
+    margin-top: 10vh;
+    display: none;
+}

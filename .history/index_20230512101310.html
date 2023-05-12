@@ -1,3 +1,4 @@
+!DOCTYPE html>
 <html>
 
 <head>
@@ -10,8 +11,8 @@
     <style>
         :root.main {
             --color-bg: #eeeff6;
-            --color-main: lightpink;
-            --color-headings: white;
+            --color-main: lightblue;
+            --color-headings: black;
             --color-headings-hover: gray;
             --color-text: black;
             /* --color-page-bg: white;
@@ -26,12 +27,10 @@
         .nav-link {
             font-size: 20px;
             margin-left: 10px;
-            color: var(--color-headings);
         }
 
         .nav-link:hover {
             cursor: pointer;
-            color: var(--color-headings-hover);
         }
 
         .teamdiv {
@@ -44,59 +43,21 @@
         }
 
         .navbar {
-            height: 9.5%;
-            background-color: var(--color-main);
-            width: 100%;
-            display: flex;
-            vertical-align: middle;
-            padding-left: 5%;
-            align-items: center;
+            height: 8%;
         }
 
-        .navbar-toggler {
-            display: inline-block;
-            font-size: 100px;
-            color: var(--color-headings);
-        }
-
-        .navbar-toggler:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        #side-menu {
-            width: 0;
-            display: none;
+        /* .navbar-toggler {
             height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: var(--color-main);
-            color: var(--color-headings);
-            overflow-x: hidden;
-            padding-top: 60px;
-            transition: 0.5s;
-        }
+            aspect-ratio: 1/1;
+        } */
 
-        .close-btn {
-            font-size: 80px;
-            font-family: sans-serif;
-            color: var(--color-headings);
-            float: right;
-        }
-
-        .close-btn:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
+        .side-menu {
+            display: none;
         }
     </style>
 </head>
 
-<body style="margin: 0; padding: 0">
+<body>
     <!-- <div class="collapse" id="navbarToggleExternalContent">
   <div class="bg-dark p-4">
     <h5 class="text-white h4">Collapsed content</h5>
@@ -110,29 +71,33 @@
     </button>
   </div>
 </nav> -->
-    <div id="side-menu">
+    <div class="side-menu">
         <!-- <div class="offcanvas-header"> -->
         <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
         <!-- <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
             data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-        <p class="close-btn" onclick="closeNav()"> x
-        </p>
+        <button style="position:absolute; right: 25px; top: 25px" type="button" class="close-btn"
+            onclick="closenav()"></button>
+        <!-- </div> -->
         <div class="offcanvas-body">
-            <ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('teamspage')">Teams</a>
+                    <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                        data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('eventspage')">Events</a>
+                    <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                        aria-label="Close">Events</a>
                 </li>
             </ul>
         </div>
     </div>
     <nav class="navbar">
-        <p class="navbar-toggler" type="button" onclick="openNav()">
+        <button class="navbar-toggler" type="button" onclick="openNav()">
             ≡
-        </p>
+        </button>
 
+        </div>
     </nav>
 
     <div id="loggedin">
@@ -164,11 +129,6 @@
             headers: myHeaders
         };
 
-        window.onload = function () {
-            document.documentElement.classList.add("main")
-            window.localStorage.setItem('mode', 'main');
-        }
-
         function openpage(pageName) {
             // var i, tabcontent, tablinks;
             // tabcontent = document.getElementsByClassName("tabcontent");
@@ -199,14 +159,12 @@
         }
 
         function openNav() {
-            document.getElementById("side-menu").style.width = "250px";
-            document.getElementById("side-menu").style.display = "block";
+            document.getElementById("menu").style.width = "250px";
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
-            document.getElementById("side-menu").style.width = "0";
-            document.getElementById("side-menu").style.display = "none";
+            document.getElementById("menu").style.width = "0";
         }
 
         function getTeams() {

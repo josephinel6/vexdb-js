@@ -1,42 +1,38 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         :root.main {
             --color-bg: #eeeff6;
-            --color-main: lightpink;
-            --color-headings: white;
-            --color-headings-hover: gray;
-            --color-text: black;
-            /* --color-page-bg: white;
+            --color-main: blue;
+            --color-page-bg: white;
             --color-obj-bg: #f1f2f3;
             --color-title-text: #4d4d4d;
             --color-gen-text: #4d4d4d;
             --color-menu-hover: darkgrey;
-            --color-title-hover: darkgrey; */
+            --color-title-hover: darkgrey;
         }
 
 
         .nav-link {
             font-size: 20px;
             margin-left: 10px;
-            color: var(--color-headings);
         }
 
         .nav-link:hover {
             cursor: pointer;
-            color: var(--color-headings-hover);
         }
 
         .teamdiv {
             border-width: 0.5px;
-            border-color: var(--color-text);
+            border-color: black;
             border-style: solid;
             margin-top: -0.5px;
             height: 100px;
@@ -44,59 +40,17 @@
         }
 
         .navbar {
-            height: 9.5%;
-            background-color: var(--color-main);
-            width: 100%;
-            display: flex;
-            vertical-align: middle;
-            padding-left: 5%;
-            align-items: center;
+            height: 8%;
         }
 
-        .navbar-toggler {
-            display: inline-block;
-            font-size: 100px;
-            color: var(--color-headings);
-        }
-
-        .navbar-toggler:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        #side-menu {
-            width: 0;
-            display: none;
+        .navbar-toggler-icon {
             height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: var(--color-main);
-            color: var(--color-headings);
-            overflow-x: hidden;
-            padding-top: 60px;
-            transition: 0.5s;
-        }
-
-        .close-btn {
-            font-size: 80px;
-            font-family: sans-serif;
-            color: var(--color-headings);
-            float: right;
-        }
-
-        .close-btn:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
+            aspect-ratio: 1/1;
         }
     </style>
 </head>
 
-<body style="margin: 0; padding: 0">
+<body>
     <!-- <div class="collapse" id="navbarToggleExternalContent">
   <div class="bg-dark p-4">
     <h5 class="text-white h4">Collapsed content</h5>
@@ -110,29 +64,36 @@
     </button>
   </div>
 </nav> -->
-    <div id="side-menu">
+    <div class="side-menu">
         <!-- <div class="offcanvas-header"> -->
         <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
         <!-- <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
             data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-        <p class="close-btn" onclick="closeNav()"> x
-        </p>
+        <button style="position:absolute; right: 25px; top: 25px" type="button" class="close-btn"
+            onclick="closenav()"></button>
+        <!-- </div> -->
         <div class="offcanvas-body">
-            <ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('teamspage')">Teams</a>
+                    <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                        data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('eventspage')">Events</a>
+                    <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                        aria-label="Close">Events</a>
                 </li>
             </ul>
         </div>
     </div>
-    <nav class="navbar">
-        <p class="navbar-toggler" type="button" onclick="openNav()">
-            ≡
-        </p>
+    <nav class="navbar bg-light fixed-top">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Offcanvas navbar</a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+        </div>
     </nav>
 
     <div id="loggedin">
@@ -164,11 +125,6 @@
             headers: myHeaders
         };
 
-        window.onload = function () {
-            document.documentElement.classList.add("main")
-            window.localStorage.setItem('mode', 'main');
-        }
-
         function openpage(pageName) {
             // var i, tabcontent, tablinks;
             // tabcontent = document.getElementsByClassName("tabcontent");
@@ -199,14 +155,12 @@
         }
 
         function openNav() {
-            document.getElementById("side-menu").style.width = "250px";
-            document.getElementById("side-menu").style.display = "block";
+            document.getElementById("menu").style.width = "250px";
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
-            document.getElementById("side-menu").style.width = "0";
-            document.getElementById("side-menu").style.display = "none";
+            document.getElementById("menu").style.width = "0";
         }
 
         function getTeams() {

@@ -11,7 +11,7 @@
         :root.main {
             --color-bg: #eeeff6;
             --color-main: lightpink;
-            --color-headings: white;
+            --color-headings: black;
             --color-headings-hover: gray;
             --color-text: black;
             /* --color-page-bg: white;
@@ -26,12 +26,10 @@
         .nav-link {
             font-size: 20px;
             margin-left: 10px;
-            color: var(--color-headings);
         }
 
         .nav-link:hover {
             cursor: pointer;
-            color: var(--color-headings-hover);
         }
 
         .teamdiv {
@@ -49,13 +47,12 @@
             width: 100%;
             display: flex;
             vertical-align: middle;
-            padding-left: 5%;
             align-items: center;
         }
 
         .navbar-toggler {
             display: inline-block;
-            font-size: 100px;
+            font-size: 80px;
             color: var(--color-headings);
         }
 
@@ -66,32 +63,8 @@
             border: none;
         }
 
-        #side-menu {
-            width: 0;
+        .side-menu {
             display: none;
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: var(--color-main);
-            color: var(--color-headings);
-            overflow-x: hidden;
-            padding-top: 60px;
-            transition: 0.5s;
-        }
-
-        .close-btn {
-            font-size: 80px;
-            font-family: sans-serif;
-            color: var(--color-headings);
-            float: right;
-        }
-
-        .close-btn:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
         }
     </style>
 </head>
@@ -110,28 +83,31 @@
     </button>
   </div>
 </nav> -->
-    <div id="side-menu">
+    <div class="side-menu">
         <!-- <div class="offcanvas-header"> -->
         <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
         <!-- <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
             data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-        <p class="close-btn" onclick="closeNav()"> x
-        </p>
+        <button style="position:absolute; right: 25px; top: 25px" type="button" class="close-btn"
+            onclick="closenav()"></button>
+        <!-- </div> -->
         <div class="offcanvas-body">
-            <ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('teamspage')">Teams</a>
+                    <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                        data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('eventspage')">Events</a>
+                    <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                        aria-label="Close">Events</a>
                 </li>
             </ul>
         </div>
     </div>
     <nav class="navbar">
-        <p class="navbar-toggler" type="button" onclick="openNav()">
+        <button class="navbar-toggler" type="button" onclick="openNav()">
             ≡
-        </p>
+        </button>
 
     </nav>
 
@@ -199,14 +175,12 @@
         }
 
         function openNav() {
-            document.getElementById("side-menu").style.width = "250px";
-            document.getElementById("side-menu").style.display = "block";
+            document.getElementById("menu").style.width = "250px";
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
-            document.getElementById("side-menu").style.width = "0";
-            document.getElementById("side-menu").style.display = "none";
+            document.getElementById("menu").style.width = "0";
         }
 
         function getTeams() {

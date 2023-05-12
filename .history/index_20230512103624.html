@@ -26,12 +26,10 @@
         .nav-link {
             font-size: 20px;
             margin-left: 10px;
-            color: var(--color-headings);
         }
 
         .nav-link:hover {
             cursor: pointer;
-            color: var(--color-headings-hover);
         }
 
         .teamdiv {
@@ -67,31 +65,7 @@
         }
 
         #side-menu {
-            width: 0;
             display: none;
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: var(--color-main);
-            color: var(--color-headings);
-            overflow-x: hidden;
-            padding-top: 60px;
-            transition: 0.5s;
-        }
-
-        .close-btn {
-            font-size: 80px;
-            font-family: sans-serif;
-            color: var(--color-headings);
-            float: right;
-        }
-
-        .close-btn:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
         }
     </style>
 </head>
@@ -115,15 +89,18 @@
         <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
         <!-- <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
             data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-        <p class="close-btn" onclick="closeNav()"> x
-        </p>
+        <button style="position:absolute; right: 25px; top: 25px" type="button" class="close-btn"
+            onclick="closenav()"></button>
+        <!-- </div> -->
         <div class="offcanvas-body">
-            <ul>
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('teamspage')">Teams</a>
+                    <a class="nav-link tablink" aria-current="page" onclick="openpage('teamspage')"
+                        data-bs-dismiss="offcanvas" aria-label="Close">Teams</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link tablink" onclick="openpage('eventspage')">Events</a>
+                    <a class="nav-link tablink" onclick="openpage('eventspage')" data-bs-dismiss="offcanvas"
+                        aria-label="Close">Events</a>
                 </li>
             </ul>
         </div>
@@ -200,13 +177,11 @@
 
         function openNav() {
             document.getElementById("side-menu").style.width = "250px";
-            document.getElementById("side-menu").style.display = "block";
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
             document.getElementById("side-menu").style.width = "0";
-            document.getElementById("side-menu").style.display = "none";
         }
 
         function getTeams() {

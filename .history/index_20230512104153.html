@@ -26,12 +26,10 @@
         .nav-link {
             font-size: 20px;
             margin-left: 10px;
-            color: var(--color-headings);
         }
 
         .nav-link:hover {
             cursor: pointer;
-            color: var(--color-headings-hover);
         }
 
         .teamdiv {
@@ -75,23 +73,10 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: var(--color-main);
-            color: var(--color-headings);
+            background-color: var(--color-headings);
             overflow-x: hidden;
             padding-top: 60px;
             transition: 0.5s;
-        }
-
-        .close-btn {
-            font-size: 80px;
-            font-family: sans-serif;
-            color: var(--color-headings);
-            float: right;
-        }
-
-        .close-btn:hover {
-            color: var(--color-headings-hover);
-            cursor: pointer;
         }
     </style>
 </head>
@@ -115,7 +100,7 @@
         <!-- <h5 class="offcanvaTs-title" id="offcanvasNavbarLabel">Offcanvas</h5> -->
         <!-- <button style="position:absolute; right: 25px; top: 25px" type="button" class="btn-close"
             data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-        <p class="close-btn" onclick="closeNav()"> x
+        <p style="position:absolute; right: 25px; top: 25px" type="button" class="close-btn" onclick="closenav()"> x
         </p>
         <div class="offcanvas-body">
             <ul>

@@ -1,4 +1,5 @@
-
+var vexiq = "#0174c6";
+var vexv5 = "#d8292e";
 
 //* API URLs
 var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjVhN2ZjOWFhOTFkOTBlZDg1NDI2NzlhZDQwN2FkNjQwNjFhMjQ0NjhjYzI4ODg0MGUyZDE5YzFhZDBjMmQ1NzY2MjM5MmE2YTdhZDY4ZGEiLCJpYXQiOjE2ODM3NjIwNDEuNjk1MjAzMSwibmJmIjoxNjgzNzYyMDQxLjY5NTIwNzEsImV4cCI6MjYzMDUzNjg0MS42ODYyMjIxLCJzdWIiOiIxMTUxMzEiLCJzY29wZXMiOltdfQ.XoxNTREVpPXphGAs0k_DMpkOAkuZKdOzGk3GEOmJCLWqzhs2M8uopYJ5Haf3bLbiyw5JAc1u-k4K0-z86LzJ5fIh_SYjZ1LsocgdbXE-40OICA8hb0u5XwIdX2ssAriayWP07jz2mrglKG0mTEu9vANcpGJ17CVjSqJwsTMEf0T9Y0_nILHlGe2PpYvuvQXIGleB5LpzLnpWcZW4IFFGwuLE5c7WJgIeTcv5OZsOjylST-yyWg_95LzT7jL8Sl1Sm9CCQPnR9q2InHyLAx0up-tLSMSAmzciTZgBaB15O97t3-JmXNdIZ9eMTSTweC_yxWxOJrI1iJ2hTy1p162jobSS3dp0k7JO5drae7NPCCG68Lo40mAv0xIwH-2-zSQjo0ZPn9VWM78CEgeMAbyIseJ2558BHaRsMVsr3b4GTSjZHSvAiBTTLtxqqBiTUjUtcArnQR5UXAPRoFebKF1ZxfePeeCZdEDa7kdqMZ80AwmI0RcoetazCnVeFbHIROC7ANIIyIDMirY9-qhTq4ykX32VwApAtO-WRp7LbTNCMMeY0xM8UJv5EfY0lCOofeXDtCyTGmxz6Vmaw4bGCqmbxmC8iqlXN7tgIfzl12zO_DloSHwF2meNaIVjJXPsw091BHwmPQKsGubmJ9UPKSt3Xw8jhEhepZr-6X394WAwmw8";
@@ -17,37 +18,37 @@ const data = {
 };
 
 $(function () {
-    $("#nav-placeholder").load("navigation.html");
+    $("#nav-placeholder").load("https://josephinel6.github.io/vexdb-js/navigation.html");
 });
 
-function openpage(pageName) {
-    // var i, tabcontent, tablinks;
-    // tabcontent = document.getElementsByClassName("tabcontent");
-    // for (i = 0; i < tabcontent.length; i++) {
-    //     tabcontent[i].style.display = "none";
-    // }
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(pageName).style.display = "block";
-    // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
+// function openpage(pageName) {
+//     // var i, tabcontent, tablinks;
+//     // tabcontent = document.getElementsByClassName("tabcontent");
+//     // for (i = 0; i < tabcontent.length; i++) {
+//     //     tabcontent[i].style.display = "none";
+//     // }
+//     var i, tabcontent, tablinks;
+//     tabcontent = document.getElementsByClassName("tabcontent");
+//     for (i = 0; i < tabcontent.length; i++) {
+//         tabcontent[i].style.display = "none";
+//     }
+//     tablinks = document.getElementsByClassName("tablink");
+//     for (i = 0; i < tablinks.length; i++) {
+//         tablinks[i].style.backgroundColor = "";
+//     }
+//     document.getElementById(pageName).style.display = "block";
+//     // document.getElementsByClassName("offcanvas").document.getElementById(pageName).style.display = "block";
 
-    if (pageName == "teamspage") {
-        getTeams(1)
-    }
-    if (pageName == "eventspage") {
-        getEvents(1)
-    }
+//     if (pageName == "teamspage") {
+//         getTeams(1)
+//     }
+//     if (pageName == "eventspage") {
+//         getEvents(1)
+//     }
 
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+//     document.body.scrollTop = 0;
+//     document.documentElement.scrollTop = 0;
+// }
 
 function getTeams(page) {
     var teamstodelete = document.querySelectorAll(".teamsdiv");
@@ -59,10 +60,6 @@ function getTeams(page) {
     pleasewait.src = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
     document.getElementById("teamspage").appendChild(pleasewait)
     pleasewait.className = "pleasewait"
-    pleasewait.style.marginLeft = "25%";
-    pleasewait.style.height = "50%";
-    pleasewait.style.width = "50%";
-    pleasewait.style.objectFit = "cover";
     fetch(teamsurl + "?per_page=100" + "?page=" + page, data)
         .then(response => response.json())
         .then(response => {
@@ -81,6 +78,9 @@ function getTeams(page) {
                 var programcontainer = document.createElement("div");
                 programcontainer.className = "programcontainer";
                 teamdiv.appendChild(programcontainer);
+                var teamprogram = document.createElement("div");
+                teamprogram.className = "program";
+                programcontainer.appendChild(teamprogram);
                 var teamnumbercontainer = document.createElement("div");
                 teamnumbercontainer.className = "teamnumbercontainer";
                 teamdiv.appendChild(teamnumbercontainer)
@@ -108,6 +108,20 @@ function getTeams(page) {
                 teamorg.innerHTML = response.data[i].organization;
                 teamlocation.innerHTML = response.data[i].location.region + ", " + response.data[i].location.country;
                 teamdiv.appendChild(teamlocationcontainer);
+                if (response.data[i].program.code == "VEXU") {
+                    teamprogram.innerHTML = "VEXU";
+                    teamprogram.style.backgroundColor = "black";
+                }
+                else if (response.data[i].program.code == "VRC") {
+                    teamprogram.innerHTML = "VRC";
+                    teamprogram.style.backgroundColor = vexv5;
+
+                }
+                else if (response.data[i].program.code == "VIQC") {
+                    teamprogram.innerHTML = "IQ";
+                    teamprogram.style.backgroundColor = vexiq;
+
+                }
                 // programcontainer.style.backgroundColor = "blue";
                 // teamnumbercontainer.style.backgroundColor = "red";
                 // teamnamecontainer.style.backgroundColor = "black";
@@ -173,12 +187,8 @@ function getEvents(page) {
     })
     var pleasewait = document.createElement("img")
     pleasewait.src = "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921"
-    document.getElementById("teamspage").appendChild(pleasewait)
+    document.getElementById("eventspage").appendChild(pleasewait)
     pleasewait.className = "pleasewait"
-    pleasewait.style.marginLeft = "25%";
-    pleasewait.style.height = "50%";
-    pleasewait.style.width = "50%";
-    pleasewait.style.objectFit = "cover";
     fetch(eventsurl + "?per_page=100", data)
         .then(response => response.json())
         .then(response => {
@@ -196,8 +206,11 @@ function getEvents(page) {
                 eventdiv.className = "eventdiv";
                 document.getElementById("eventslist").appendChild(eventdiv);
                 var eventprogramcontainer = document.createElement("div");
-                eventprogramcontainer.className = "eventprogramcontainer";
+                eventprogramcontainer.className = "programcontainer";
                 eventdiv.appendChild(eventprogramcontainer);
+                var eventprogram = document.createElement("div");
+                eventprogramcontainer.appendChild(eventprogram)
+                eventprogram.className = "program";
                 var eventnamecontainer = document.createElement("div");
                 eventnamecontainer.className = "eventnamecontainer";
                 eventdiv.appendChild(eventnamecontainer)
@@ -224,10 +237,30 @@ function getEvents(page) {
                 eventlocation.innerHTML = response.data[i].location.region + ", " + response.data[i].location.country;
                 eventdiv.appendChild(eventlocationcontainer);
                 console.log(eventname.innerHTML + ", " + eventdate.innerHTML + ", " + eventlocation.innerHTML);
+
+                if (response.data[i].program.code == "VEXU") {
+                    eventprogram.innerHTML = "VEXU";
+                    eventprogram.style.backgroundColor = "black";
+                }
+                else if (response.data[i].program.code == "VRC") {
+                    eventprogram.innerHTML = "VRC";
+                    eventprogram.style.backgroundColor = vexv5;
+
+                }
+                else if (response.data[i].program.code == "VIQC") {
+                    eventprogram.innerHTML = "IQ";
+                    eventprogram.style.backgroundColor = vexiq;
+
+                }
+                else {
+                    console.log("Event program" + response.data[i].program.code)
+                    eventprogram.innerHTML = "null";
+
+                }
             }
 
-            document.getElementById("teamslistpageselection").style.display = "block";
-            document.getElementById("teamslisttotalpages").innerHTML = "of " + response.meta.last_page;
+            document.getElementById("eventslistpageselection").style.display = "block";
+            document.getElementById("eventslisttotalpages").innerHTML = "of " + response.meta.last_page;
 
         })
 

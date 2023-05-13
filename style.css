@@ -54,7 +54,6 @@
 
 .tabcontent {
     margin-top: 10vh;
-    display: none;
 }
 
 @media screen and (min-width: 992px) {
@@ -98,7 +97,7 @@
 
     .program {
         width: 80%;
-        height: 90%;
+        height: 80%;
         margin-left: 10%;
         color: white;
         border-radius: 8px;
@@ -135,6 +134,13 @@
         border: none;
     }
 
+    .pleasewait {
+        margin-left: 43%;
+        height: 14%;
+        width: 14%;
+        object-fit: cover;
+    }
+
 
     .navbar-toggler-icon {
         object-fit: cover;
@@ -152,12 +158,13 @@
         width: 10%;
     }
 
-    .pleasewait {
-        margin-left: 25%;
-        height: 50%;
-        width: 50%;
+    /* .pleasewait {
+        margin-left: 37.5%;
+        margin-top: 10%;
+        height: 25%;
+        width: 25%;
         object-fit: cover;
-    }
+    } */
 
     .teamdiv {
         border-width: 0.5px;
@@ -182,7 +189,7 @@
 
     .program {
         width: 80%;
-        height: 90%;
+        height: 80%;
         margin-left: 10%;
         color: white;
         border-radius: 8px;

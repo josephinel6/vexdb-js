@@ -50,6 +50,8 @@ $(function () {
 //     document.documentElement.scrollTop = 0;
 // }
 
+var viewteamid;
+
 function getTeams(page) {
     var teamstodelete = document.querySelectorAll(".teamsdiv");
     teamstodelete.forEach(teamstodelete => {
@@ -72,7 +74,7 @@ function getTeams(page) {
             for (i = 0; i < Object.keys(response.data).length; i++) {
                 console.log(response.data[i].team_name);
                 var teamdiv = document.createElement("div");
-                teamdiv.id = "teamdiv" + i;
+                teamdiv.id = response.data[i].id;
                 teamdiv.className = "teamdiv";
                 document.getElementById("teamslist").appendChild(teamdiv);
                 var programcontainer = document.createElement("div");
@@ -127,6 +129,8 @@ function getTeams(page) {
                 // teamnamecontainer.style.backgroundColor = "black";
                 // teamorgcontainer.style.backgroundColor = "blue";
                 // teamlocationcontainer.style.backgroundColor = "black";
+
+                teamname.setAttribute("onclick", "gotoviewteam(" + response.data[i].id + ")");
             }
             document.getElementById("teamslistpageselection").style.display = "block";
             document.getElementById("teamslisttotalpages").innerHTML = "of " + response.meta.last_page;
@@ -264,6 +268,22 @@ function getEvents(page) {
 
         })
 
+}
+
+function gotoviewteam(teamid) {
+    console.log("team = " + teamid)
+    viewteamid = teamid;
+    window.location.replace('viewteam.html');
+}
+
+function viewteam() {
+    console.log(viewteamid)
+    fetch(teamsurl + "/" + viewteamid)
+        .then(response => response.json())
+        .then(response => {
+            console.log("fetch")
+            console.log(response)
+        })
 }
 
 // document.getElementById("teamslistpagenum").addEventListener("keypress", function (event) {

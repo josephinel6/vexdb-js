@@ -22,6 +22,11 @@
     display: inline-block;
 }
 
+.teamnamecontainer:hover {
+    cursor: pointer;
+    color: darkgray;
+}
+
 #eventslist {
     margin: 1%;
 }

@@ -276,12 +276,7 @@ function gotoviewteam(teamid) {
     window.location.replace('viewteam.html?teamid=' + teamid);
 }
 
-var months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-];
-var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-
-async function viewteam() {
+function viewteam() {
     const teamsviewurl = new URLSearchParams(location.search);
     viewteamid = teamsviewurl.get("teamid");
     console.log(viewteamid)
@@ -290,72 +285,14 @@ async function viewteam() {
         .then(response => {
             console.log("fetch")
             console.log(response)
-            document.getElementById("viewteamwindow").style.display = "block";
-            document.getElementById("viewteamname").innerHTML = response.number + ": " + response.team_name;
-            document.getElementById("viewteamorg").innerHTML = response.organization;
-            document.getElementById("viewteamprogram").innerHTML = response.program.code;
-            document.getElementById("viewteamlocation").innerHTML = response.location.city + ", " + response.location.region + ", " + response.location.country;
-            document.getElementById("viewteamwebsite").innerHTML = "Robotevents Profile"
-            document.getElementById("viewteamwebsite").href = "https://www.robotevents.com/teams/" + response.program.code + "/" + response.number;
-            // document.getElementById("viewteamwebsite").setAttribute(onclick, function () { window.open("www.robotevents.com/teams/" + response.program.code + "/" + response.number, "_self") });
-            // document.getElementById("viewteamwindow").appendChild(teamname);
-            // var teamorg = document.createElement("h5");
-            // teamorg.style.color = "gray";
-            // teamorg.style.marginTop = "-2px"
-            // teamorg.innerHTML = response.organization;
-            // document.getElementById("viewteamwindow").appendChild(teamorg);
-        })
-    await fetch(teamsurl + "/" + viewteamid + "/events", data)
-        .then(response => response.json())
-        .then(response => {
-            console.log(response)
-            for (i = 0; i < response.data.length; i++) {
-
-                console.log("repeat")
-                console.log("Event " + i)
-                var teameventdiv = document.createElement("div");
-                teameventdiv.className = "viewteameventdiv"
-                document.getElementById("viewteamwindow").appendChild(teameventdiv);
-                var eventtitle = document.createElement("h4");
-                eventtitle.innerHTML = response.data[i].name;
-                teameventdiv.appendChild(eventtitle);
-                var eventdate = document.createElement("h6")
-                eventdate.style.marginTop = "-2px"
-                teameventdiv.appendChild(eventdate);
-                if (response.data[i].start == response.data[i].end) {
-                    // var date = new Date(response.data[i].start.split("-")[0], response.data[i].start.split("-")[1], response.data[i].start.split("-")[2]);
-                    var date = new Date(response.data[i].start)
-                    eventdate.innerHTML = daysinweek[date.getDay()] + " " + months[date.getMonth() - 1] + " " + date.getDate() + ", " + date.getFullYear();
-                    console.log(date)
-                }
-                else {
-                    var startdate = new Date(response.data[i].start);
-                    var enddate = new Date(response.data[i].end);
-                    eventdate.innerHTML = "From " + daysinweek[startdate.getDay()] + " " + months[startdate.getMonth() - 1] + " " + startdate.getDate() + ", " + startdate.getFullYear() + " to " + daysinweek[enddate.getDay()] + " " + months[enddate.getMonth() - 1] + " " + enddate.getDate() + ", " + enddate.getFullYear()
-                }
-                var rankingicon = document.createElement("i");
-                rankingicon.className = "fa fa-list-ol";
-                var rankingnum = document.createElement("p");
-                rankingnum.style.display = "inline-block";
-                rankingnum.style.marginLeft = "5px";
-                teameventdiv.appendChild(rankingicon);
-                teameventdiv.appendChild(rankingnum);
-                // var teamrankresponse = await fetch()
-                // fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
-                //     .then(response => response.json())
-                //     .then(response => {
-                //         rankingnum.innerHTML = response.data[0].rank;
-                //         console.log(response)
-                //         console.log(response.data[0].rank)
-                //     })
-                fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
-                    .then(response => response.json())
-                    .then(response => {
-                        rankingnum.innerHTML = response.data[0].rank;
-                        console.log(response)
-                        console.log(response.data[0].rank)
-                    })
-            }
+            var teamname = document.createElement("h1");
+            teamname.innerHTML = response.number + ": " + response.team_name;
+            document.getElementById("viewteamwindow").appendChild(teamname);
+            var teamorg = document.createElement("h5");
+            teamorg.style.color = "#A9A9A9";
+            teamorg.style.marginTop = "-2px"
+            teamorg.innerHTML = response.organization;
+            document.getElementById("viewteamwindow").appendChild(teamorg);
         })
 }
 

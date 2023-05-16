@@ -3,10 +3,6 @@
     --vex-v5: #d8292e;
 }
 
-#viewteamwebsite:hover {
-    cursor: pointer;
-}
-
 .nav-link {
 
     margin-left: 10px;
@@ -77,14 +73,6 @@
     margin-right: 2vh;
 }
 
-.viewteameventdiv {
-    border: black;
-    border-radius: 10px;
-    padding: 1%;
-    border-width: 2px;
-    border-style: solid;
-}
-
 @media screen and (min-width: 992px) {
 
 
@@ -109,8 +97,8 @@
 
     .tabcontent {
         margin-top: 10vh;
-        margin-left: 4vh;
-        margin-right: 4vh;
+        margin-left: 3vh;
+        margin-right: 3vh;
     }
 
     .eventsdiv {
@@ -124,7 +112,6 @@
         display: flex;
         align-items: center;
     }
-
 
     .programcontainer {
         width: 5%;

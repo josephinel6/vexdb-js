@@ -281,7 +281,7 @@ var months = ["January", "February", "March", "April", "May", "June",
 ];
 var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-async function viewteam() {
+function viewteam() {
     const teamsviewurl = new URLSearchParams(location.search);
     viewteamid = teamsviewurl.get("teamid");
     console.log(viewteamid)
@@ -305,13 +305,11 @@ async function viewteam() {
             // teamorg.innerHTML = response.organization;
             // document.getElementById("viewteamwindow").appendChild(teamorg);
         })
-    await fetch(teamsurl + "/" + viewteamid + "/events", data)
+    fetch(teamsurl + "/" + viewteamid + "/events", data)
         .then(response => response.json())
         .then(response => {
             console.log(response)
             for (i = 0; i < response.data.length; i++) {
-
-                console.log("repeat")
                 console.log("Event " + i)
                 var teameventdiv = document.createElement("div");
                 teameventdiv.className = "viewteameventdiv"
@@ -340,21 +338,7 @@ async function viewteam() {
                 rankingnum.style.marginLeft = "5px";
                 teameventdiv.appendChild(rankingicon);
                 teameventdiv.appendChild(rankingnum);
-                // var teamrankresponse = await fetch()
-                // fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
-                //     .then(response => response.json())
-                //     .then(response => {
-                //         rankingnum.innerHTML = response.data[0].rank;
-                //         console.log(response)
-                //         console.log(response.data[0].rank)
-                //     })
-                fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
-                    .then(response => response.json())
-                    .then(response => {
-                        rankingnum.innerHTML = response.data[0].rank;
-                        console.log(response)
-                        console.log(response.data[0].rank)
-                    })
+
             }
         })
 }

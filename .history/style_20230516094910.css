@@ -3,10 +3,6 @@
     --vex-v5: #d8292e;
 }
 
-#viewteamwebsite:hover {
-    cursor: pointer;
-}
-
 .nav-link {
 
     margin-left: 10px;
@@ -60,29 +56,12 @@
     display: inline-block;
 }
 
-#viewteamorg:hover {
-    color: #454545;
-    cursor: pointer;
-}
-
-#viewteamorg {
-    color: #757575;
-    margin-top: -5px;
-}
-
 
 .tabcontent {
     margin-top: 10vh;
     margin-left: 2vh;
     margin-right: 2vh;
-}
-
-.viewteameventdiv {
-    border: black;
-    border-radius: 10px;
-    padding: 1%;
-    border-width: 2px;
-    border-style: solid;
+    background-color: blue;
 }
 
 @media screen and (min-width: 992px) {
@@ -107,12 +86,6 @@
         align-items: center;
     }
 
-    .tabcontent {
-        margin-top: 10vh;
-        margin-left: 4vh;
-        margin-right: 4vh;
-    }
-
     .eventsdiv {
         /* border-width: 0.5px;
         border-color: black;
@@ -124,7 +97,6 @@
         display: flex;
         align-items: center;
     }
-
 
     .programcontainer {
         width: 5%;

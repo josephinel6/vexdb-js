@@ -78,9 +78,9 @@
 }
 
 .viewteameventdiv {
+    background-color: blue;
     border: black;
-    border-radius: 10px;
-    padding: 1%;
+    border-radius: 5%;
     border-width: 2px;
     border-style: solid;
 }

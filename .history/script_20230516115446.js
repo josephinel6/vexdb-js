@@ -305,7 +305,7 @@ async function viewteam() {
             // teamorg.innerHTML = response.organization;
             // document.getElementById("viewteamwindow").appendChild(teamorg);
         })
-    await fetch(teamsurl + "/" + viewteamid + "/events", data)
+    fetch(teamsurl + "/" + viewteamid + "/events", data)
         .then(response => response.json())
         .then(response => {
             console.log(response)
@@ -340,14 +340,7 @@ async function viewteam() {
                 rankingnum.style.marginLeft = "5px";
                 teameventdiv.appendChild(rankingicon);
                 teameventdiv.appendChild(rankingnum);
-                // var teamrankresponse = await fetch()
-                // fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
-                //     .then(response => response.json())
-                //     .then(response => {
-                //         rankingnum.innerHTML = response.data[0].rank;
-                //         console.log(response)
-                //         console.log(response.data[0].rank)
-                //     })
+                var teamrankresponse = await fetch()
                 fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
                     .then(response => response.json())
                     .then(response => {
@@ -355,6 +348,13 @@ async function viewteam() {
                         console.log(response)
                         console.log(response.data[0].rank)
                     })
+                // fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
+                //     .then(response => response.json())
+                //     .then(response => {
+                //         rankingnum.innerHTML = response.data[0].rank;
+                //         console.log(response)
+                //         console.log(response.data[0].rank)
+                //     })
             }
         })
 }

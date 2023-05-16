@@ -279,8 +279,9 @@ function gotoviewteam(teamid) {
 function viewteam() {
     const teamsviewurl = new URLSearchParams(location.search);
     viewteamid = teamsviewurl.get("teamid");
+    console.log(teamsviewurl)
     console.log(viewteamid)
-    fetch(teamsurl + "/" + viewteamid, data)
+    fetch(teamsurl + "/" + viewteamid)
         .then(response => response.json())
         .then(response => {
             console.log("fetch")

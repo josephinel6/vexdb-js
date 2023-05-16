@@ -80,12 +80,10 @@
 .viewteameventdiv {
     border: black;
     border-radius: 10px;
-    padding-top: 1%;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
+    padding: 1%;
     border-width: 2px;
     border-style: solid;
-    margin-top: 1%;
+    margin: 1%;
 }
 
 @media screen and (min-width: 992px) {

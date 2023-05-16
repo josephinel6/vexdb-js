@@ -278,7 +278,8 @@ function gotoviewteam(teamid) {
 }
 
 var months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+    "July", "August", "September", "October", "November", "December"
+];
 var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 async function viewteam() {
@@ -339,19 +340,17 @@ async function viewteam() {
                 var rankingnum = document.createElement("p");
                 rankingnum.style.display = "inline-block";
                 rankingnum.style.marginLeft = "5px";
-                // rankingnum.id = "rankingnum" + i;
-                rankingnum.setAttribute("id", "rankingnum" + i)
+                rankingnum.id = "rankingnum" + i;
                 teameventdiv.appendChild(rankingicon);
                 teameventdiv.appendChild(rankingnum);
                 var awardsicon = document.createElement("i");
                 awardsicon.className = "fa fa-list-ol";
-                awardsicon.setAttribute("id", "awardsicon" + i);
+                awardsicon.id = "awardsicon" + i;
                 awardsicon.style.display = "none";
                 var awardslist = document.createElement("p");
                 awardslist.style.display = "inline-block";
                 awardslist.style.marginLeft = "5px";
-                // awardslist.id = "awardslist" + i;
-                awardslist.setAttribute("id", "awardslist" + i)
+                awardslist.id = "awardslist" + i;
                 teameventdiv.appendChild(rankingicon);
                 teameventdiv.appendChild(rankingnum);
                 // var teamrankresponse = await fetch()
@@ -376,19 +375,16 @@ function geteventrankingforteam(teamid, eventid, num) {
     // teamranking = await fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data);
     // teamranking = await teamranking.json()
     // console.log(teamranking);
-    // console.log("Getting rank for " + eventid + " at " + num);
     fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data)
         .then(response => response.json())
         .then(response => {
-            console.log(teamsurl + "/" + teamid + "/rankings?event=" + eventid);
-            console.log(response);
             document.getElementById("rankingnum" + num).innerHTML = response.data[0].rank;
         })
 }
 
 
 
-function geteventawardsforteam(teamid, eventid, thisnum) {
+function geteventawardsforteam(teamid, eventid, num) {
     fetch(teamsurl + "/" + teamid + "/awards?event=" + eventid, data)
         .then(response => response.json())
         .then(response => {
@@ -404,8 +400,8 @@ function geteventawardsforteam(teamid, eventid, thisnum) {
                     }
 
                 }
-                document.getElementById("awardsicon" + thisnum).style.display = "block";
-                document.getElementById("awardslist" + thisnum).innerHTML = teamsawardsforevent;
+                document.getElementById("awardsicon" + num).style.display = "block";
+                document.getElementById("awardslist" + num).innerHTML = teamsawardsforevent;
             }
         })
 }

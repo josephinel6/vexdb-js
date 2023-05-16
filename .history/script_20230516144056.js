@@ -278,7 +278,8 @@ function gotoviewteam(teamid) {
 }
 
 var months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+    "July", "August", "September", "October", "November", "December"
+];
 var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 async function viewteam() {
@@ -380,7 +381,6 @@ function geteventrankingforteam(teamid, eventid, num) {
     fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data)
         .then(response => response.json())
         .then(response => {
-            console.log(teamsurl + "/" + teamid + "/rankings?event=" + eventid);
             console.log(response);
             document.getElementById("rankingnum" + num).innerHTML = response.data[0].rank;
         })
@@ -388,7 +388,7 @@ function geteventrankingforteam(teamid, eventid, num) {
 
 
 
-function geteventawardsforteam(teamid, eventid, thisnum) {
+function geteventawardsforteam(teamid, eventid, num) {
     fetch(teamsurl + "/" + teamid + "/awards?event=" + eventid, data)
         .then(response => response.json())
         .then(response => {
@@ -404,8 +404,8 @@ function geteventawardsforteam(teamid, eventid, thisnum) {
                     }
 
                 }
-                document.getElementById("awardsicon" + thisnum).style.display = "block";
-                document.getElementById("awardslist" + thisnum).innerHTML = teamsawardsforevent;
+                document.getElementById("awardsicon" + num).style.display = "block";
+                document.getElementById("awardslist" + num).innerHTML = teamsawardsforevent;
             }
         })
 }

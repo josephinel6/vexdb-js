@@ -278,7 +278,8 @@ function gotoviewteam(teamid) {
 }
 
 var months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+    "July", "August", "September", "October", "November", "December"
+];
 var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 async function viewteam() {
@@ -321,7 +322,6 @@ async function viewteam() {
                 teameventdiv.appendChild(eventtitle);
                 var eventdate = document.createElement("h6")
                 eventdate.style.marginTop = "-2px"
-                document.getElementById("viewteameventsbox").appendChild(teameventdiv);
                 teameventdiv.appendChild(eventdate);
                 if (response.data[i].start == response.data[i].end) {
                     // var date = new Date(response.data[i].start.split("-")[0], response.data[i].start.split("-")[1], response.data[i].start.split("-")[2]);
@@ -339,27 +339,11 @@ async function viewteam() {
                 var rankingnum = document.createElement("p");
                 rankingnum.style.display = "inline-block";
                 rankingnum.style.marginLeft = "5px";
-                // rankingnum.id = "rankingnum" + i;
-                rankingnum.setAttribute("id", "rankingnum" + i)
-                teameventdiv.appendChild(rankingicon);
-                teameventdiv.appendChild(rankingnum);
-                var awardsicon = document.createElement("i");
-                awardsicon.className = "fa fa-list-ol";
-                awardsicon.setAttribute("id", "awardsicon" + i);
-                awardsicon.style.display = "none";
-                var awardslist = document.createElement("p");
-                awardslist.style.display = "inline-block";
-                awardslist.style.marginLeft = "5px";
-                // awardslist.id = "awardslist" + i;
-                awardslist.setAttribute("id", "awardslist" + i)
                 teameventdiv.appendChild(rankingicon);
                 teameventdiv.appendChild(rankingnum);
                 // var teamrankresponse = await fetch()
-                geteventrankingforteam(viewteamid, response.data[i].id, i);
-                geteventawardsforteam(viewteamid, response.data[i].id, i)
-                // teamranking = fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data);
-                // rankingnum.innerHTML = teamranking.data[0].rank;
-
+                geteventrankingforteam(viewteamid, response.data[i].id);
+                rankingnum.innerHTML = teamranking.data[0].rank;
                 // fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data)
                 //     .then(response => response.json())
                 //     .then(response => {
@@ -372,42 +356,10 @@ async function viewteam() {
         })
 }
 
-function geteventrankingforteam(teamid, eventid, num) {
-    // teamranking = await fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data);
-    // teamranking = await teamranking.json()
-    // console.log(teamranking);
-    // console.log("Getting rank for " + eventid + " at " + num);
-    fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data)
-        .then(response => response.json())
-        .then(response => {
-            console.log(teamsurl + "/" + teamid + "/rankings?event=" + eventid);
-            console.log(response);
-            document.getElementById("rankingnum" + num).innerHTML = response.data[0].rank;
-        })
-}
-
-
-
-function geteventawardsforteam(teamid, eventid, thisnum) {
-    fetch(teamsurl + "/" + teamid + "/awards?event=" + eventid, data)
-        .then(response => response.json())
-        .then(response => {
-            if (response.meta.total > 0) {
-                var teamsawardsforevent;
-                for (i = 0; i < response.data.length; i++) {
-                    // teamsawardarrayperevent.push(response.data[i].title);
-                    if (i != response.data.length - 1) {
-                        teamsawardsforevent += response.data[i].title + ", ";
-                    }
-                    else {
-                        teamsawardsforevent += response.data[i].title;
-                    }
-
-                }
-                document.getElementById("awardsicon" + thisnum).style.display = "block";
-                document.getElementById("awardslist" + thisnum).innerHTML = teamsawardsforevent;
-            }
-        })
+async function geteventrankingforteam(teamid, eventid) {
+    teamranking = await fetch(teamsurl + "/" + teamid + "/rankings?event=" + eventid, data);
+    teamranking = await teamranking.json()
+    console.log(teamranking);
 }
 
 // document.getElementById("teamslistpagenum").addEventListener("keypress", function (event) {

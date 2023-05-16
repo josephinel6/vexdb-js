@@ -278,7 +278,8 @@ function gotoviewteam(teamid) {
 }
 
 var months = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+    "July", "August", "September", "October", "November", "December"
+];
 var daysinweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 async function viewteam() {

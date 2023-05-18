@@ -310,9 +310,11 @@ async function viewteam() {
         .then(response => {
             console.log(response)
             for (i = 0; i < response.data.length; i++) {
+
+                console.log("repeat")
+                console.log("Event " + i)
                 var teameventdiv = document.createElement("div");
                 teameventdiv.className = "viewteameventdiv"
-                teameventdiv.id = "viewteameventdiv" + i;
                 document.getElementById("viewteamwindow").appendChild(teameventdiv);
                 var eventtitle = document.createElement("h4");
                 eventtitle.innerHTML = response.data[i].name;
@@ -363,8 +365,7 @@ async function viewteam() {
                 teameventdiv.appendChild(awardslist);
                 // var teamrankresponse = await fetch()
                 geteventrankingforteam(viewteamid, response.data[i].id, i);
-                geteventawardsforteam(viewteamid, response.data[i].id, i);
-                geteventdataforteam(viewteamid, response.data[i].id, i)
+                geteventawardsforteam(viewteamid, response.data[i].id, i)
                 // teamranking = fetch(teamsurl + "/" + viewteamid + "/rankings?event=" + response.data[i].id, data);
                 // rankingnum.innerHTML = teamranking.data[0].rank;
 
@@ -378,19 +379,6 @@ async function viewteam() {
 
             }
         })
-}
-
-function geteventdataforteam(teamid, eventid, thisthisnum) {
-    fetch(teamsurl + "/" + teamid + "/matches?event=" + eventid, data)
-        .then(response => response.json())
-        .then(response => {
-            for (i = 0; i < response.data.length; i++) {
-                var matchdiv = document.createElement("div");
-                document.getElementById("viewteameventdiv" + i).appendChild(matchdiv);
-                matchdiv.className = "viewteameventmatchdiv";
-            }
-        })
-
 }
 
 function geteventrankingforteam(teamid, eventid, num) {

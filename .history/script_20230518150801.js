@@ -312,7 +312,7 @@ async function viewteam() {
             for (i = 0; i < response.data.length; i++) {
                 var teameventdiv = document.createElement("div");
                 teameventdiv.className = "viewteameventdiv"
-                teameventdiv.id = "viewteameventdiv" + i;
+                teameventdiv.id = "viewteameventdiv" + i
                 document.getElementById("viewteamwindow").appendChild(teameventdiv);
                 var eventtitle = document.createElement("h4");
                 eventtitle.innerHTML = response.data[i].name;
@@ -386,8 +386,6 @@ function geteventdataforteam(teamid, eventid, thisthisnum) {
         .then(response => {
             for (i = 0; i < response.data.length; i++) {
                 var matchdiv = document.createElement("div");
-                document.getElementById("viewteameventdiv" + i).appendChild(matchdiv);
-                matchdiv.className = "viewteameventmatchdiv";
             }
         })
 

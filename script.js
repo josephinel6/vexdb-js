@@ -10,6 +10,8 @@ var myHeaders = new Headers();
 
 myHeaders.append('Content-Type', 'application/json; charset=utf-8');
 myHeaders.append('Authorization', 'Bearer ' + token);
+myHeaders.append('Accept-Language', 'en');
+myHeaders.append(
 
 const data = {
 
